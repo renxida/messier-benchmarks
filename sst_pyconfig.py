@@ -1,6 +1,13 @@
 import sys
-memory_mb = int(sys.argv[1])
-print(f"memory_mb:{memory_mb}")
+import argparse
+print("entering...")
+parser = argparse.ArgumentParser()
+parser.add_argument("--memory_mb", type=int)
+parser.add_argument("--count", type=int)
+args = parser.parse_args()
+
+print("Arguments: ", args)
+
 import sst
 
 # Define SST core options
@@ -19,8 +26,8 @@ cpugen = comp_cpu.setSubComponent("generator", "miranda.SingleStreamGenerator")
 cpugen.addParams({
     "verbose" : 0,
     "startat": 0,
-    "count": memory_mb*1024*1024,
-    "max_address" : (memory_mb) * 1024 * 1024,
+    "count": args.count,
+    "max_address" : (args.memory_mb) * 1024 * 1024,
 })
 
 # Enable statistics outputs
@@ -52,7 +59,7 @@ nvm_mem_params = {
 }
 nvm_backend_params = {
    # "max_requests_per_cycle" : 1,
-    "mem_size" : f"{memory_mb}MiB", 
+    "mem_size" : f"{args.memory_mb}MiB", 
     #"backendConvertor.backend.clock" : "1024 MHz",
     #"backendConvertor" : "memHierarchy.MemBackendConvertor", 
    # "backend.device_count" : 1,
