@@ -22,12 +22,18 @@ comp_cpu = sst.Component("cpu", "miranda.BaseCPU")
 comp_cpu.addParams({
     "verbose" : 0,
 })
-cpugen = comp_cpu.setSubComponent("generator", "miranda.SingleStreamGenerator")
+# cpugen = comp_cpu.setSubComponent("generator", "miranda.GUPSGenerator")
+# cpugen.addParams({
+#     "verbose" : 0,
+#     "startat": 0,
+#     "count": args.count,
+#     "max_address" : (args.memory_mb) * 1024 * 1024,
+# })
+
+cpugen = comp_cpu.setSubComponent("generator", "miranda.CopyGenerator")
 cpugen.addParams({
-    "verbose" : 0,
-    "startat": 0,
-    "count": args.count,
-    "max_address" : (args.memory_mb) * 1024 * 1024,
+    "verbose" : 1,
+    "request_count": args.memory_mb * 1024 * 512 // 2 //2 -1
 })
 
 # Enable statistics outputs
