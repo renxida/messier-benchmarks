@@ -1,5 +1,5 @@
 --------------------------------------------------------------------------
-[[53491,1],0]: A high-performance Open MPI point-to-point messaging module
+[[41425,1],0]: A high-performance Open MPI point-to-point messaging module
 was unable to find any relevant network interfaces:
 
 Module: OpenFabrics (openib)
@@ -192,20 +192,35 @@ After initialization
  l1cache.ForceInv_recv : Accumulator : Sum.u64 = 0; SumSQ.u64 = 0; Count.u64 = 0; Min.u64 = 0; Max.u64 = 0; 
  l1cache.Fetch_recv : Accumulator : Sum.u64 = 0; SumSQ.u64 = 0; Count.u64 = 0; Min.u64 = 0; Max.u64 = 0; 
  l1cache.FetchInv_recv : Accumulator : Sum.u64 = 0; SumSQ.u64 = 0; Count.u64 = 0; Min.u64 = 0; Max.u64 = 0; 
- [banner:24701] *** Process received signal ***
-[banner:24701] Signal: Segmentation fault (11)
-[banner:24701] Signal code: Address not mapped (1)
-[banner:24701] Failing at address: 0x1d6
-[banner:24701] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x128a0)[0x7f1d83cf78a0]
-[banner:24701] [ 1] /usr/lib/x86_64-linux-gnu/libopen-pal.so.20(opal_libevent2022_event_del+0x17)[0x7f1d81b19e77]
-[banner:24701] [ 2] /usr/lib/x86_64-linux-gnu/openmpi/lib/openmpi/mca_btl_tcp.so(+0x6f7e)[0x7f1d712a4f7e]
-[banner:24701] [ 3] /usr/lib/x86_64-linux-gnu/libopen-pal.so.20(mca_base_component_close+0x19)[0x7f1d81afa229]
-[banner:24701] [ 4] /usr/lib/x86_64-linux-gnu/libopen-pal.so.20(mca_base_components_close+0x55)[0x7f1d81afa2b5]
-[banner:24701] [ 5] /usr/lib/x86_64-linux-gnu/libopen-pal.so.20(+0x5f803)[0x7f1d81b16803]
-[banner:24701] [ 6] /usr/lib/x86_64-linux-gnu/libopen-pal.so.20(mca_base_framework_close+0x71)[0x7f1d81b051c1]
-[banner:24701] [ 7] /usr/lib/x86_64-linux-gnu/libopen-pal.so.20(mca_base_framework_close+0x71)[0x7f1d81b051c1]
-[banner:24701] [ 8] /usr/lib/x86_64-linux-gnu/libmpi.so.20(ompi_mpi_finalize+0x5e3)[0x7f1d831f82d3]
-[banner:24701] [ 9] /home/xidaren/local/sst/sstcore-10.0.0/bin/sst(main+0x18eb)[0x562cc08fb35b]
-[banner:24701] [10] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xe7)[0x7f1d827e5b97]
-[banner:24701] [11] /home/xidaren/local/sst/sstcore-10.0.0/bin/sst(_start+0x2a)[0x562cc090b1ea]
-[banner:24701] *** End of error message ***
+ l1cache.FetchInvX_recv : Accumulator : Sum.u64 = 0; SumSQ.u64 = 0; Count.u64 = 0; Min.u64 = 0; Max.u64 = 0; 
+ l1cache.NACK_recv : Accumulator : Sum.u64 = 0; SumSQ.u64 = 0; Count.u64 = 0; Min.u64 = 0; Max.u64 = 0; 
+ l1cache.AckPut_recv : Accumulator : Sum.u64 = 0; SumSQ.u64 = 0; Count.u64 = 0; Min.u64 = 0; Max.u64 = 0; 
+ l1cache.MSHR_occupancy : Accumulator : Sum.u64 = 28543171462; SumSQ.u64 = 795275857604; Count.u64 = 1056935134; Min.u64 = 0; Max.u64 = 33; 
+ l1cache.Bank_conflicts : Accumulator : Sum.u64 = 0; SumSQ.u64 = 0; Count.u64 = 0; Min.u64 = 0; Max.u64 = 0; 
+
+
+------------------------------------------------------------
+Simulation Timing Information:
+Build time:                      0.142630 seconds
+Simulation time:                 4577.840516 seconds
+Total time:                      4577.983232 seconds
+Simulated time:                  528.468 ms
+
+Simulation Resource Information:
+Max Resident Set Size:           823.8 MB
+Approx. Global Max RSS Size:     823.8 MB
+Max Local Page Faults:           0 faults
+Global Page Faults:              0 faults
+Max Output Blocks:               0 blocks
+Max Input Blocks:                0 blocks
+Max mempool usage:               573.715 MB
+Global mempool usage:            573.715 MB
+Global active activities:        6291463 activities
+Current global TimeVortex depth: 6 entries
+Max TimeVortex depth:            17 entries
+Max Sync data size:              0 B
+Global Sync data size:           0 B
+------------------------------------------------------------
+
+
+Simulation is complete, simulated time: 528.468 ms
