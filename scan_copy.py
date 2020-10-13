@@ -3,7 +3,7 @@ import argparse
 print("entering...")
 parser = argparse.ArgumentParser()
 parser.add_argument("--memory_mb", type=int)
-parser.add_argument("--count", type=int)
+parser.add_argument("--copy_mb", type=int) # should 
 args = parser.parse_args()
 
 print("Arguments: ", args)
@@ -33,7 +33,8 @@ comp_cpu.addParams({
 cpugen = comp_cpu.setSubComponent("generator", "miranda.CopyGenerator")
 cpugen.addParams({
     "verbose" : 1,
-    "request_count": args.memory_mb * 1024 * 512 // 2 //2 -1
+    "operandwidth": 8, # 8 bytes per copy
+    "request_count": args.copy_mb * 1024 * 1024 // 8 # mb divided by bits per request. 
 })
 
 # Enable statistics outputs
