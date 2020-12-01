@@ -1,0 +1,14 @@
+==5751== Massif, a heap profiler
+==5751== Copyright (C) 2003-2017, and GNU GPL'd, by Nicholas Nethercote
+==5751== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==5751== Command: /home/xidaren/local/sst/sstcore-10.0.0/libexec/sstsim.x /home/xidaren/messier-benchmarks/scan_copy.py --model-options=--memory_mb=1\ --copy_mb=256
+==5751== Parent PID: 5750
+==5751== 
+==5751== 
+==5751== Process terminating with default action of signal 2 (SIGINT)
+==5751==    at 0x8223478: SST::MemHierarchy::MemBackendConvertor::turnClockOn(unsigned long) (memBackendConvertor.cc:150)
+==5751==    by 0x81B11C5: SST::MemHierarchy::MemController::finish() (memoryController.cc:501)
+==5751==    by 0x4C3A91: SST::Simulation::finish() (simulation.cc:614)
+==5751==    by 0x416C26: start_simulation(unsigned int, SimThreadInfo_t&, SST::Core::ThreadSafe::Barrier&) (main.cc:342)
+==5751==    by 0x417E39: main (main.cc:681)
+==5751== 

@@ -1,0 +1,7 @@
+==22673== Massif, a heap profiler
+==22673== Copyright (C) 2003-2017, and GNU GPL'd, by Nicholas Nethercote
+==22673== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==22673== Command: /home/xidaren/local/sst/sstcore-10.0.0/libexec/sstsim.x /home/xidaren/messier-benchmarks/scan_copy.py --model-options=--memory_mb=1\ --copy_mb=256
+==22673== Parent PID: 22672
+==22673== 
+==22673== 
