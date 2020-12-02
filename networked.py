@@ -55,11 +55,79 @@ memctrl.addParams({
     "verbose": 2,
 })
 memToDir = memctrl.setSubComponent("cpulink", "memHierarchy.MemLink")
-memory = memctrl.setSubComponent("backend", "memHierarchy.simpleMem")
-memory.addParams({
-    "access_time": "100 ns",
-    "mem_size": "512MiB"
+
+
+
+
+# set bakcned to messier
+nvm_memory_backend = memctrl.setSubComponent("backend", "memHierarchy.Messier")
+
+nvm_mem_params = {
+    "clock" : "1024 MHz",
+    "backing" : "none",
+}
+nvm_backend_params = {
+   # "max_requests_per_cycle" : 1,
+    "mem_size" : f"512MiB", 
+    #"backendConvertor.backend.clock" : "1024 MHz",
+    #"backendConvertor" : "memHierarchy.MemBackendConvertor", 
+   # "backend.device_count" : 1,
+   # "backend.link_count" : 4,
+   # "backend.vault_count" : 16,
+   # "backend.queue_depth" : 64,
+   # "backend.bank_count" : 16,
+   # "backend.dram_count" : 20,
+   # "backend.capacity_per_device" : 4, # Min is now 4 but we'll just use 1 of it
+   # "backend.xbar_depth" : 128,
+   # "backend.max_req_size" : 64,
+   # "backend.tag_count" : 512,
+}
+
+memctrl.addParams(nvm_mem_params)
+nvm_memory_backend.addParams(nvm_backend_params)
+
+messier_inst = sst.Component("NVMmemory", "Messier")
+
+messier_params = {
+	"clock" : "1 GHz",
+
+}
+messier_inst.addParams(messier_params)
+
+messier_inst.addParams({
+      "tCL" : "30",
+      "tRCD" : "300",
+      "clock" : "1GHz",
+      "tCL_W" : "1000",
+      "write_buffer_size" : "32",
+      "flush_th" : "90",
+      "num_banks" : "32",
+      "max_outstanding" : "32",
+      "max_current_weight" : "160",
+      "read_weight" : "5",
+      "write_weight" : "50",
+      "max_writes" : 4
 })
+
+
+#nvm_memory.addParams({
+ #     "coherence_protocol" : "MESI",
+#      "backend.access_time" : "1000 ns",
+ #     "backend.mem_size" : str(memory_mb * 1024 * 1024) + "B",
+#      "clock" : "1GHz"
+#})
+
+#nvm_memory.addParams(nvm_mem_params)
+
+link_nvm_bus_link = sst.Link("link_nvm_bus_link")
+link_nvm_bus_link.connect( (messier_inst, "bus", "50ps"), (nvm_memory_backend, "nvm_link", "50ps") )
+
+
+# end messier backend
+
+
+
+
 
 link_dir_net = sst.Link("link_dir_net")
 link_dir_net.connect((comp_chiprtr, "port0", "2000ps"),
