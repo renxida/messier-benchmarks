@@ -1,3 +1,8 @@
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument("--cpucount", type=int)
+args = parser.parse_args()
+N_NODES = args.cpucount
 
 # Automatically generated SST Python input
 import sst
@@ -9,7 +14,6 @@ DEBUG_L3 = 0
 DEBUG_DIR = 0
 DEBUG_MEM = 0
 
-N_NODES = 55
 
 # create memory and net
 
@@ -68,9 +72,9 @@ nvm_mem_params = {
 }
 nvm_backend_params = {
    # "max_requests_per_cycle" : 1,
-    "mem_size" : f"512MiB", 
+    "mem_size" : f"512MiB",
     #"backendConvertor.backend.clock" : "1024 MHz",
-    #"backendConvertor" : "memHierarchy.MemBackendConvertor", 
+    #"backendConvertor" : "memHierarchy.MemBackendConvertor",
    # "backend.device_count" : 1,
    # "backend.link_count" : 4,
    # "backend.vault_count" : 16,
@@ -222,7 +226,7 @@ for ix in range(N_NODES):
     link_cache_net.connect((l3NIC, "port", "10000ps"),
                         (comp_chiprtr, f"port{ix+1}", "2000ps"))
 
-    
+
 
 
 # Enable statistics
@@ -231,4 +235,4 @@ sst.setStatisticOutput("sst.statOutputConsole")
 # for a in componentlist:
 #     sst.enableAllStatisticsForComponentType(a)
 
-# Define the simulation 
+# Define the simulation
